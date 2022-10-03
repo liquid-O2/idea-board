@@ -1,0 +1,192 @@
+@font-face {
+  font-family: "GeneralSans-Semibold";
+  src: url("../fonts/GeneralSans-Semibold.woff2") format("woff2"),
+    url("../fonts/GeneralSans-Semibold.woff") format("woff"),
+    url("../fonts/GeneralSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeneralSans-Regular";
+  src: url("../fonts/GeneralSans-Regular.woff2") format("woff2"),
+    url("../fonts/GeneralSans-Regular.woff") format("woff"),
+    url("../fonts/GeneralSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeneralSans-Light";
+  src: url("../fonts/GeneralSans-Light.woff2") format("woff2"),
+    url("../fonts/GeneralSans-Light.woff") format("woff"),
+    url("../fonts/GeneralSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+  --white: #faf9eb;
+  --black: #10100e;
+  --border: #a6a6a410;
+  --background: #faf9eb07;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+}
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: "GeneralSans-Regular";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: "GeneralSans-Semibold";
+  font-size: 3rem;
+  letter-spacing: -0.06rem;
+}
+
+.container {
+  width: 95vw;
+  max-width: 1440px;
+}
+
+.flex {
+  display: flex;
+}
+
+.center-hr {
+  justify-content: center;
+}
+.center-vr {
+  align-items: center;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}
+
+.createWrapper {
+  width: 100%;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+}
+
+.createTitle,
+.placeholder {
+  width: 100%;
+  font-family: "GeneralSans-Semibold";
+  background-color: #00000000;
+  border: none;
+  color: var(--white);
+  padding: 1rem 1.1rem;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.createText {
+  width: 100%;
+  background-color: #00000000;
+  border: none;
+  color: var(--white);
+  padding: 1rem 1.1rem;
+  font-size: 1.25rem;
+}
+
+.counter {
+  align-self: flex-start;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  color: #faf9eb80;
+}
+
+.button-wrapper {
+  align-self: flex-end;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+button {
+  border: none;
+  font-family: "GeneralSans-Semibold";
+  height: 40px;
+  background-color: var(--background);
+  border: 1px solid var(--white);
+  border-radius: 0.5rem;
+  color: var(--white);
+  font-size: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.submitBtn {
+  margin-left: 1rem;
+  color: var(--black);
+  background-color: var(--white);
+}
+.placeholder {
+  border: none;
+}
+.card {
+  background: var(--background);
+  overflow: hidden;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex: 1 0 auto;
+  row-gap: 0.5rem;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-family: "GeneralSans-Semibold";
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.7rem;
+}
+.card-text {
+  font-size: 1.2rem;
+  word-wrap: break-word;
+  line-height: 150%;
+}
+
+.card-time {
+  font-size: 1rem;
+  opacity: 70%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+img {
+  object-fit: cover;
+  width: 28px;
+  height: 28px;
+  margin-left: auto;
+}
+
+.action-wrapper {
+  margin-top: auto;
+  width: 100%;
+}
+
+.ideasWrapper {
+  gap: 12px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
