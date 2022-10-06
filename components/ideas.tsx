@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EditIdea from './editIdea';
 
-const Ideas = ({ ideas, visibility, setVisibility }) => {
+const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
   const [selectedTitle, setSelectedTitle] = useState('');
   const [selectedText, setSelectedText] = useState('');
   const [selectedId, setSelectedId] = useState('');
@@ -15,6 +15,7 @@ const Ideas = ({ ideas, visibility, setVisibility }) => {
         text={selectedText}
         id={selectedId}
         ideas={ideas}
+        dispatch={dispatch}
       />
       <div className='container flex ideasWrapper mt-2'>
         {ideas.map((idea) => (

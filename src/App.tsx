@@ -14,6 +14,15 @@ let ideaTemplate = [
   },
 ];
 
+const getDate = () => {
+  let currentDate = new Date();
+  let day = currentDate.getDate();
+  let month = currentDate.getMonth() + 1;
+  let year = currentDate.getFullYear();
+  let time = currentDate.getHours() + ':' + currentDate.getMinutes();
+  return `${day}/${month}/${year}   -   ${time}`;
+};
+
 const reducer = (ideas, action) => {
   if (action.type === 'submit') {
     return [
@@ -26,6 +35,20 @@ const reducer = (ideas, action) => {
         updated: false,
       },
     ];
+  } else if (action.type === 'update') {
+    return ideas.map((idea) => {
+      if (action.id === idea.id) {
+        return {
+          ...idea,
+          title: action.updatedTitle,
+          text: action.updatedText,
+          updated: true,
+          updatedTime: 'Updated on: ' + getDate(),
+        };
+      } else {
+        return idea;
+      }
+    });
   }
 };
 
@@ -40,6 +63,7 @@ function App() {
         ideas={ideas}
         visibility={modalVisibility}
         setVisibility={setModalVisibility}
+        dispatch={dispatch}
       />
     </>
   );

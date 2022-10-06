@@ -1,9 +1,27 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const EditIdea = ({ editIsOpen, setVisibility, title, text, id, ideas }) => {
+const getDate = () => {
+  let currentDate = new Date();
+  let day = currentDate.getDate();
+  let month = currentDate.getMonth() + 1;
+  let year = currentDate.getFullYear();
+  let time = currentDate.getHours() + ':' + currentDate.getMinutes();
+  return `${day}/${month}/${year}   -   ${time}`;
+};
+
+const EditIdea = ({
+  editIsOpen,
+  setVisibility,
+  title,
+  text,
+  id,
+  ideas,
+  dispatch,
+}) => {
   //   const [charLeft, setCharLeft] = useState(
   //     text.length ? 140 - text.length : 140
   //   );
+
   const inputText = useRef(null);
   const inputTitle = useRef(null);
 
@@ -43,7 +61,19 @@ const EditIdea = ({ editIsOpen, setVisibility, title, text, id, ideas }) => {
                 >
                   Cancel
                 </button>
-                <button type='submit' className='submitBtn'>
+                <button
+                  type='submit'
+                  className='submitBtn'
+                  onClick={() => {
+                    dispatch({
+                      type: 'update',
+                      updatedTitle: inputTitle.current.value,
+                      updatedText: inputText.current.value,
+                      id: id,
+                    });
+                    setVisibility((prevVis) => !prevVis);
+                  }}
+                >
                   Save Idea
                 </button>
               </div>
