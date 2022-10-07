@@ -11,8 +11,22 @@ let ideaTemplate = [
     createdTime: null,
     updatedTime: null,
     updated: false,
+    jsTime: null,
   },
 ];
+
+function compareDate(a, b) {
+  const dateA = a.jsTime;
+  const dateB = b.jsTime;
+
+  let comparison = 0;
+  if (dateA > dateB) {
+    comparison = 1;
+  } else if (dateA < dateB) {
+    comparison = -1;
+  }
+  return comparison;
+}
 
 const getDate = () => {
   let currentDate = new Date();
@@ -33,6 +47,7 @@ const reducer = (ideas, action) => {
         id: action.id,
         createdTime: 'Created on: ' + action.time,
         updated: false,
+        jsTime: Date.now(),
       },
     ];
   } else if (action.type === 'update') {
@@ -44,18 +59,34 @@ const reducer = (ideas, action) => {
           text: action.updatedText,
           updated: true,
           updatedTime: 'Updated on: ' + getDate(),
+          jsTime: Date.now(),
         };
       } else {
         return idea;
       }
     });
+  } else if (action.type === 'Alphabetical') {
+    ideas.sort(function (a, b) {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  } else if (action.type === 'Most Recent') {
+    ideas.sort(function (a, b) {
+      return a.jsTime - b.jsTime;
+    });
+    console.log(ideas);
   }
 };
 
 function App() {
   const [ideas, dispatch] = useReducer(reducer, ideaTemplate);
   const [modalVisibility, setModalVisibility] = useState(false);
-  // console.log(ideas);
+
   return (
     <>
       <CreateIdea dispatch={dispatch} />

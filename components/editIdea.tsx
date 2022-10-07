@@ -1,23 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
-const getDate = () => {
-  let currentDate = new Date();
-  let day = currentDate.getDate();
-  let month = currentDate.getMonth() + 1;
-  let year = currentDate.getFullYear();
-  let time = currentDate.getHours() + ':' + currentDate.getMinutes();
-  return `${day}/${month}/${year}   -   ${time}`;
-};
-
-const EditIdea = ({
-  editIsOpen,
-  setVisibility,
-  title,
-  text,
-  id,
-  ideas,
-  dispatch,
-}) => {
+const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
   //   const [charLeft, setCharLeft] = useState(
   //     text.length ? 140 - text.length : 140
   //   );

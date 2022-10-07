@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EditIdea from './editIdea';
-
+import SortIdeas from './sortIdeas';
 const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
   const [selectedTitle, setSelectedTitle] = useState('');
   const [selectedText, setSelectedText] = useState('');
@@ -14,9 +14,9 @@ const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
         title={selectedTitle}
         text={selectedText}
         id={selectedId}
-        ideas={ideas}
         dispatch={dispatch}
       />
+      <SortIdeas hidden={ideas.length > 2} dispatch={dispatch} />
       <div className='container flex ideasWrapper mt-2'>
         {ideas.map((idea) => (
           <React.Fragment key={idea.id}>
