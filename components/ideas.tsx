@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import EditIdea from './editIdea';
-import SortIdeas from './sortIdeas';
-const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
-  const [selectedTitle, setSelectedTitle] = useState('');
-  const [selectedText, setSelectedText] = useState('');
-  const [selectedId, setSelectedId] = useState('');
+import React, { useState } from 'react'
+import EditIdea from './editIdea'
+// eslint-disable-next-line import/no-unresolved
+import SortIdeas from './sortIdeas'
+
+function Ideas({ ideas, visibility, setVisibility, dispatch }) {
+  const [selectedTitle, setSelectedTitle] = useState('')
+  const [selectedText, setSelectedText] = useState('')
+  const [selectedId, setSelectedId] = useState('')
 
   return (
     <>
@@ -16,6 +18,7 @@ const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
         id={selectedId}
         dispatch={dispatch}
       />
+
       <SortIdeas hidden={ideas.length > 2} dispatch={dispatch} />
       <div className='container flex ideasWrapper mt-2'>
         {ideas.map((idea) => (
@@ -31,12 +34,11 @@ const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
                 <div
                   className='action-wrapper flex'
                   onClick={() => {
-                    setVisibility(!visibility);
-                    setSelectedId(idea.id);
-                    setSelectedText(idea.text);
-                    setSelectedTitle(idea.title);
-                  }}
-                >
+                    setVisibility(!visibility)
+                    setSelectedId(idea.id)
+                    setSelectedText(idea.text)
+                    setSelectedTitle(idea.title)
+                  }}>
                   <img src='/EditButton.svg' alt='' />
                 </div>
               </div>
@@ -45,7 +47,7 @@ const Ideas = ({ ideas, visibility, setVisibility, dispatch }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Ideas;
+export default Ideas
