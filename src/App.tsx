@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { useReducer, useState } from 'react'
 
 //
