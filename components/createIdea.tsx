@@ -1,20 +1,20 @@
-import React from 'react';
-import { useRef, useState } from 'react';
-import { v4 as uuid } from 'uuid';
-const getDate = () => {
-  let currentDate = new Date();
-  let day = currentDate.getDate();
-  let month = currentDate.getMonth() + 1;
-  let year = currentDate.getFullYear();
-  let time = currentDate.getHours() + ':' + currentDate.getMinutes();
-  return `${day}/${month}/${year}   -   ${time}`;
-};
+import React, { useRef, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
-const CreateIdea = ({ dispatch }) => {
-  const [createVisibility, setCreateVisibility] = useState(false);
-  const [charactersleft, setCharactersLeft] = useState(140);
-  const createTitle = useRef(null);
-  const createText = useRef(null);
+const getDate = () => {
+  const currentDate = new Date()
+  const day = currentDate.getDate()
+  const month = currentDate.getMonth() + 1
+  const year = currentDate.getFullYear()
+  const time = `${currentDate.getHours()}:${currentDate.getMinutes()}`
+  return `${day}/${month}/${year}   -   ${time}`
+}
+
+function CreateIdea({ dispatch }) {
+  const [createVisibility, setCreateVisibility] = useState(false)
+  const [charactersleft, setCharactersLeft] = useState(140)
+  const createTitle = useRef(null)
+  const createText = useRef(null)
   return (
     <div className='container flex center-vr mt-2 flex-vertical'>
       <h1>IdeaBoard</h1>
@@ -38,9 +38,9 @@ const CreateIdea = ({ dispatch }) => {
               ref={createText}
               onChange={(e) => {
                 if (e.target.value === '') {
-                  setCharactersLeft(140);
+                  setCharactersLeft(140)
                 }
-                setCharactersLeft(140 - e.target.value.length);
+                setCharactersLeft(140 - e.target.value.length)
               }}
               required
             />
@@ -48,8 +48,7 @@ const CreateIdea = ({ dispatch }) => {
             <div className='button-wrapper mt-1'>
               <button
                 className='cancelBtn'
-                onClick={() => setCreateVisibility(!createVisibility)}
-              >
+                onClick={() => setCreateVisibility(!createVisibility)}>
                 Cancel
               </button>
               <button
@@ -62,13 +61,12 @@ const CreateIdea = ({ dispatch }) => {
                     text: createText.current.value,
                     id: uuid(),
                     time: getDate(),
-                  });
-                  setCreateVisibility(!createVisibility);
-                  createTitle.current.value = '';
-                  createText.current.value = '';
-                  setCharactersLeft(140);
-                }}
-              >
+                  })
+                  setCreateVisibility(!createVisibility)
+                  createTitle.current.value = ''
+                  createText.current.value = ''
+                  setCharactersLeft(140)
+                }}>
                 Save Idea
               </button>
             </div>
@@ -80,14 +78,14 @@ const CreateIdea = ({ dispatch }) => {
             placeholder='Capture and save your ideas'
             autoComplete='false'
             onClick={() => {
-              setCreateVisibility(!createVisibility);
-              setCharactersLeft(140);
+              setCreateVisibility(!createVisibility)
+              setCharactersLeft(140)
             }}
           />
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateIdea;
+export default CreateIdea

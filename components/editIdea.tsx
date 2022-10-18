@@ -1,12 +1,8 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 
-const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
-  //   const [charLeft, setCharLeft] = useState(
-  //     text.length ? 140 - text.length : 140
-  //   );
-
-  const inputText = useRef(null);
-  const inputTitle = useRef(null);
+function EditIdea({ editIsOpen, setVisibility, title, text, id, dispatch }) {
+  const inputText = useRef(null)
+  const inputTitle = useRef(null)
 
   return (
     <div className='modalwrapper'>
@@ -23,6 +19,7 @@ const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
                 ref={inputTitle}
                 required
               />
+
               <input
                 type='text'
                 className='createText'
@@ -39,9 +36,8 @@ const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
                 <button
                   className='cancelBtn'
                   onClick={() => {
-                    setVisibility((prevVis) => !prevVis);
-                  }}
-                >
+                    setVisibility((prevVis) => !prevVis)
+                  }}>
                   Cancel
                 </button>
                 <button
@@ -52,11 +48,10 @@ const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
                       type: 'update',
                       updatedTitle: inputTitle.current.value,
                       updatedText: inputText.current.value,
-                      id: id,
-                    });
-                    setVisibility((prevVis) => !prevVis);
-                  }}
-                >
+                      id,
+                    })
+                    setVisibility((prevVis) => !prevVis)
+                  }}>
                   Save Idea
                 </button>
               </div>
@@ -65,7 +60,7 @@ const EditIdea = ({ editIsOpen, setVisibility, title, text, id, dispatch }) => {
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default EditIdea;
+export default EditIdea

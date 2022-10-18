@@ -1,6 +1,7 @@
-import React from 'react';
+/* eslint-disable react/jsx-no-useless-fragment */
+import React from 'react'
 
-const SortIdeas = ({ hidden, dispatch }) => {
+function SortIdeas({ hidden, dispatch }) {
   return (
     <>
       {hidden ? (
@@ -13,7 +14,7 @@ const SortIdeas = ({ hidden, dispatch }) => {
         </div>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default SortIdeas;
+export default SortIdeas
