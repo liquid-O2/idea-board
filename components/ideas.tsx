@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import EditIdea from './editIdea'
-// eslint-disable-next-line import/no-unresolved
+
 import SortIdeas from './sortIdeas'
 
 function Ideas({ ideas, visibility, setVisibility, dispatch }) {
