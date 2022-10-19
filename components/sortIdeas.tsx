@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react'
+import React, { useContext } from 'react'
+import { IdeasContext } from '../src/App'
 
-function SortIdeas({ hidden, dispatch }) {
+function SortIdeas({ hidden }) {
+  const ideaContext = useContext(IdeasContext)
   return (
     <>
       {hidden ? (
         <div className='container flex sort-wrapper'>
-          <select onChange={(e) => dispatch({ type: e.target.value })}>
+          <select onChange={(e) => ideaContext.dispatch({ type: e.target.value })}>
             <option value='Default'> Default </option>
             <option value='Alphabetical'> Alphabetical </option>
             <option value='Most Recent'> Most Recent </option>

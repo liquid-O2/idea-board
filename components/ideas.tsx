@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+
+//
+
 import EditIdea from './editIdea'
-
 import SortIdeas from './sortIdeas'
+import { IdeasContext } from '../src/App'
 
-function Ideas({ ideas, visibility, setVisibility, dispatch }) {
+//
+
+function Ideas({ visibility, setVisibility }) {
+  const ideaContext = useContext(IdeasContext)
   const [selectedTitle, setSelectedTitle] = useState('')
   const [selectedText, setSelectedText] = useState('')
   const [selectedId, setSelectedId] = useState('')
@@ -16,19 +22,21 @@ function Ideas({ ideas, visibility, setVisibility, dispatch }) {
         title={selectedTitle}
         text={selectedText}
         id={selectedId}
-        dispatch={dispatch}
       />
 
-      <SortIdeas hidden={ideas.length > 2} dispatch={dispatch} />
+      <SortIdeas hidden={ideaContext.ideas.length > 2} />
+
       <div className='container flex ideasWrapper mt-2'>
-        {ideas.map((idea) => (
+        {ideaContext.ideas.map((idea) => (
           <React.Fragment key={idea.id}>
             {idea.title && idea.text ? (
               <div className='card flex flex-vertical'>
                 <p className='card-title'>{idea.title}</p>
                 <p className='card-text'>{idea.text}</p>
                 <p className='card-time'>
-                  {idea.updated ? idea.updatedTime : idea.createdTime}
+                  {idea.updated
+                    ? `Updated on : ${ideaContext.getDate(idea.time)}`
+                    : `Created on : ${ideaContext.getDate(idea.time)}`}
                 </p>
 
                 <div

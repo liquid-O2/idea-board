@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react'
+import { createContext, useReducer, useState, useMemo } from 'react'
 
 //
 
@@ -8,22 +8,10 @@ import Ideas from '../components/ideas'
 
 //
 
-const ideaTemplate = [
-  {
-    id: null,
-    title: null,
-    text: null,
-    createdTime: null,
-    updatedTime: null,
-    updated: false,
-    jsTime: null,
-  },
-]
+export const IdeasContext = createContext(null)
 
-//
-
-const getDate = () => {
-  const currentDate = new Date()
+const getDate = (date) => {
+  const currentDate = new Date(date)
   const day = currentDate.getDate()
   const month = currentDate.getMonth() + 1
   const year = currentDate.getFullYear()
@@ -42,9 +30,8 @@ const reducer = (ideas, action) => {
           title: action.title,
           text: action.text,
           id: action.id,
-          createdTime: `Created on: ${getDate()}`,
+          time: Date.now(),
           updated: false,
-          jsTime: Date.now(),
         },
       ]
 
@@ -58,9 +45,7 @@ const reducer = (ideas, action) => {
             title: action.updatedTitle,
             text: action.updatedText,
             updated: true,
-            updatedTime: `Updated on: ${getDate()}`,
-
-            jsTime: Date.now(),
+            time: Date.now(),
           }
         }
         return idea
@@ -73,20 +58,40 @@ const reducer = (ideas, action) => {
   }
 }
 
+//
+
+const ideaTemplate = [
+  {
+    id: null,
+    title: null,
+    text: null,
+    updated: false,
+    time: null,
+  },
+]
+
+//
+
 function App() {
   const [ideas, dispatch] = useReducer(reducer, ideaTemplate)
   const [modalVisibility, setModalVisibility] = useState(false)
+  //
 
+  const globalIdeas = useMemo(
+    () => ({
+      dispatch,
+      ideas,
+      getDate,
+    }),
+    [dispatch, ideas]
+  )
+
+  //
   return (
-    <>
-      <CreateIdea dispatch={dispatch} />
-      <Ideas
-        ideas={ideas}
-        visibility={modalVisibility}
-        setVisibility={setModalVisibility}
-        dispatch={dispatch}
-      />
-    </>
+    <IdeasContext.Provider value={globalIdeas}>
+      <CreateIdea />
+      <Ideas visibility={modalVisibility} setVisibility={setModalVisibility} />
+    </IdeasContext.Provider>
   )
 }
 
