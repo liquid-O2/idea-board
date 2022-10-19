@@ -1,16 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
+
+//
+
 import { v4 as uuid } from 'uuid'
+import { IdeasContext } from '../src/App'
 
-const getDate = () => {
-  const currentDate = new Date()
-  const day = currentDate.getDate()
-  const month = currentDate.getMonth() + 1
-  const year = currentDate.getFullYear()
-  const time = `${currentDate.getHours()}:${currentDate.getMinutes()}`
-  return `${day}/${month}/${year}   -   ${time}`
-}
+//
 
-function CreateIdea({ dispatch }) {
+function CreateIdea() {
+  const ideaContext = useContext(IdeasContext)
   const [createVisibility, setCreateVisibility] = useState(false)
   const [charactersleft, setCharactersLeft] = useState(140)
   const createTitle = useRef(null)
@@ -55,12 +53,11 @@ function CreateIdea({ dispatch }) {
                 type='submit'
                 className='submitBtn'
                 onClick={() => {
-                  dispatch({
+                  ideaContext.dispatch({
                     type: 'submit',
                     title: createTitle.current.value,
                     text: createText.current.value,
                     id: uuid(),
-                    time: getDate(),
                   })
                   setCreateVisibility(!createVisibility)
                   createTitle.current.value = ''

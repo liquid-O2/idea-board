@@ -1,6 +1,13 @@
-import { useRef } from 'react'
+import { useRef, useContext } from 'react'
 
-function EditIdea({ editIsOpen, setVisibility, title, text, id, dispatch }) {
+//
+
+import { IdeasContext } from '../src/App'
+
+//
+
+function EditIdea({ editIsOpen, setVisibility, title, text, id }) {
+  const ideaContext = useContext(IdeasContext)
   const inputText = useRef(null)
   const inputTitle = useRef(null)
 
@@ -27,11 +34,8 @@ function EditIdea({ editIsOpen, setVisibility, title, text, id, dispatch }) {
                 defaultValue={text}
                 autoComplete='false'
                 ref={inputText}
-                // onChange={(e) => {
-                //   setCharLeft(140 - e.target.value.length);
-                // }}
               />
-              {/* <p className='counter'> {charLeft} characters left</p> */}
+
               <div className='button-wrapper mt-1'>
                 <button
                   className='cancelBtn'
@@ -40,11 +44,12 @@ function EditIdea({ editIsOpen, setVisibility, title, text, id, dispatch }) {
                   }}>
                   Cancel
                 </button>
+
                 <button
                   type='submit'
                   className='submitBtn'
                   onClick={() => {
-                    dispatch({
+                    ideaContext.dispatch({
                       type: 'update',
                       updatedTitle: inputTitle.current.value,
                       updatedText: inputText.current.value,
