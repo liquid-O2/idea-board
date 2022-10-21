@@ -120,7 +120,9 @@ h1 {
 }
 
 .button-wrapper {
-  align-self: flex-end;
+  display: flex;
+  width: 100%;
+  justify-content: end;
   padding: 0rem 1rem 1rem 1rem;
 }
 
@@ -232,4 +234,11 @@ option {
   border: none;
   padding: 0.5rem;
   margin: 0.5rem 0rem;
+}
+
+.empty {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }

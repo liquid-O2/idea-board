@@ -10,18 +10,14 @@ import { IdeasContext } from '../src/App'
 
 function Ideas({ visibility, setVisibility }) {
   const ideaContext = useContext(IdeasContext)
-  const [selectedTitle, setSelectedTitle] = useState('')
-  const [selectedText, setSelectedText] = useState('')
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedItem, setSelectedItem] = useState({ title: '', text: '', id: '' })
 
   return (
     <>
       <EditIdea
         editIsOpen={visibility}
         setVisibility={setVisibility}
-        title={selectedTitle}
-        text={selectedText}
-        id={selectedId}
+        selectedItem={selectedItem}
       />
 
       <SortIdeas hidden={ideaContext.ideas.length > 2} />
@@ -38,14 +34,15 @@ function Ideas({ visibility, setVisibility }) {
                     ? `Updated on : ${ideaContext.getDate(idea.time)}`
                     : `Created on : ${ideaContext.getDate(idea.time)}`}
                 </p>
-
                 <div
                   className='action-wrapper flex'
                   onClick={() => {
                     setVisibility(!visibility)
-                    setSelectedId(idea.id)
-                    setSelectedText(idea.text)
-                    setSelectedTitle(idea.title)
+                    setSelectedItem({
+                      title: idea.title,
+                      text: idea.text,
+                      id: idea.id,
+                    })
                   }}>
                   <img src='/EditButton.svg' alt='' />
                 </div>
