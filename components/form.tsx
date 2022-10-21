@@ -17,7 +17,6 @@ function Form({ setCreateVisibility, update, selectedItem }) {
 
   return (
     <div className='empty'>
-      //
       <input
         type='text'
         className='createTitle'
@@ -27,7 +26,7 @@ function Form({ setCreateVisibility, update, selectedItem }) {
         ref={createTitle}
         required
       />
-      //
+
       <input
         type='text'
         className='createText'
@@ -43,17 +42,16 @@ function Form({ setCreateVisibility, update, selectedItem }) {
         }}
         required
       />
-      //
+
       <p className='counter'>{charactersleft} characters left</p>
-      //
+
       <div className='button-wrapper mt-1'>
-        //
         <button
           className='cancelBtn'
           onClick={() => setCreateVisibility((preVis) => !preVis)}>
           Cancel
         </button>
-        //
+
         <button
           type='submit'
           className='submitBtn'

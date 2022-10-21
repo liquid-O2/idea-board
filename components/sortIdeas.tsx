@@ -10,10 +10,13 @@ function SortIdeas({ hidden }) {
 
   return (
     <div className='container flex sort-wrapper'>
-      <select onChange={(e) => ideaContext.dispatch({ type: e.target.value })}>
-        <option value='Default'> Default </option>
-        <option value='Alphabetical'> Alphabetical </option>
-        <option value='Most Recent'> Most Recent </option>
+      <select
+        onChange={(e) =>
+          ideaContext.dispatch({ type: 'sort', sortType: e.target.value })
+        }>
+        <option value='default'> Default </option>
+        <option value='alphabetical'> Alphabetical </option>
+        <option value='mostRecent'> Most Recent </option>
       </select>
     </div>
   )

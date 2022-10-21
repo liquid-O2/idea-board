@@ -1,3 +1,5 @@
+import sort from './sort'
+
 export default function reducer(ideas, action) {
   switch (action.type) {
     //
@@ -29,6 +31,11 @@ export default function reducer(ideas, action) {
         }
         return idea
       })
+
+    //
+
+    case 'sort':
+      return sort(action.sortType, ideas)
 
     //
 

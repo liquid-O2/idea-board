@@ -23,9 +23,10 @@ function Ideas({ visibility, setVisibility }) {
       <SortIdeas hidden={ideaContext.ideas.length > 2} />
 
       <div className='container flex ideasWrapper mt-2'>
-        {ideaContext.ideas.map((idea) => (
-          <React.Fragment key={idea.id}>
-            {idea.title && idea.text ? (
+        {ideaContext.ideas.map((idea) => {
+          if (!(idea.title && idea.text)) return
+          return (
+            <React.Fragment key={idea.id}>
               <div className='card flex flex-vertical'>
                 <p className='card-title'>{idea.title}</p>
                 <p className='card-text'>{idea.text}</p>
@@ -47,9 +48,9 @@ function Ideas({ visibility, setVisibility }) {
                   <img src='/EditButton.svg' alt='' />
                 </div>
               </div>
-            ) : null}
-          </React.Fragment>
-        ))}
+            </React.Fragment>
+          )
+        })}
       </div>
     </>
   )
