@@ -1,28 +1,23 @@
+const sortArray = (array, property) => {
+  return [...array].sort((a, b) => {
+    if (a[property.name] < b[property.name]) {
+      return property.name === 'time' && !property.default ? 1 : -1
+    }
+    if (a[property.name] > b[property.name]) {
+      return property.name === 'time' && !property.default ? -1 : 1
+    }
+    return 0
+  })
+}
+
 export default function sort(type, array) {
-  const copyArray = [...array]
   if (type === 'alphabetical') {
-    return array.slice().sort((a, b) => {
-      if (a.title < b.title) {
-        return -1
-      }
-      if (a.title > b.title) {
-        return 1
-      }
-      return 0
-    })
+    return sortArray(array, { name: 'title', default: false })
   }
   if (type === 'mostRecent') {
-    return array.slice().sort((a, b) => {
-      if (a.time < b.time) {
-        return 1
-      }
-      if (a.time > b.time) {
-        return -1
-      }
-      return 0
-    })
+    return sortArray(array, { name: 'time', default: false })
   }
   if (type === 'default') {
-    return copyArray
+    return sortArray(array, { name: 'time', default: true })
   }
 }

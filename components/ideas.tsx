@@ -35,17 +35,26 @@ function Ideas({ visibility, setVisibility }) {
                     ? `Updated on : ${ideaContext.getDate(idea.time)}`
                     : `Created on : ${ideaContext.getDate(idea.time)}`}
                 </p>
-                <div
-                  className='action-wrapper flex'
-                  onClick={() => {
-                    setVisibility(!visibility)
-                    setSelectedItem({
-                      title: idea.title,
-                      text: idea.text,
-                      id: idea.id,
-                    })
-                  }}>
-                  <img src='/EditButton.svg' alt='' />
+                <div className='action-wrapper flex'>
+                  <div className='buttons'>
+                    <button
+                      onClick={() => {
+                        ideaContext.dispatch({ type: 'delete', id: idea.id })
+                      }}>
+                      <img src='/DeleteButton.svg' alt='' />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setVisibility(!visibility)
+                        setSelectedItem({
+                          title: idea.title,
+                          text: idea.text,
+                          id: idea.id,
+                        })
+                      }}>
+                      <img src='/EditButton.svg' alt='' />
+                    </button>
+                  </div>
                 </div>
               </div>
             </React.Fragment>

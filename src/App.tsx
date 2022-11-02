@@ -8,8 +8,6 @@ import Ideas from '../components/ideas'
 import getDate from './utils/getDate'
 import reducer from './utils/reducer'
 
-//
-
 export const IdeasContext = createContext(null)
 
 const ideaTemplate = [

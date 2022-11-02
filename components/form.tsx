@@ -14,10 +14,12 @@ function Form({ setCreateVisibility, update, selectedItem }) {
   const createText = useRef(null)
 
   //
-
+  // if (createTitle) createTitle.current.focus()
   return (
     <div className='empty'>
       <input
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
         type='text'
         className='createTitle'
         placeholder='Title'

@@ -39,6 +39,11 @@ export default function reducer(ideas, action) {
 
     //
 
+    case 'delete':
+      return ideas.filter((idea) => idea.id !== action.id)
+
+    //
+
     default:
       return ideas
   }

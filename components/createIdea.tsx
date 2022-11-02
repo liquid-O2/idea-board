@@ -19,15 +19,13 @@ function CreateIdea() {
             selectedItem={null}
           />
         ) : (
-          <input
-            type='text'
-            className='placeholder'
-            placeholder='Capture and save your ideas'
-            autoComplete='false'
+          <button
+            className='placeholder-btn'
             onClick={() => {
               setCreateVisibility(!createVisibility)
-            }}
-          />
+            }}>
+            Capture and save your ideas
+          </button>
         )}
       </div>
     </div>
