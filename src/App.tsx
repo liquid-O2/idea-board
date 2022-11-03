@@ -10,7 +10,7 @@ import reducer from './utils/reducer'
 
 export const IdeasContext = createContext(null)
 
-const ideaTemplate = [
+const initialIdeas = [
   {
     id: null,
     title: null,
@@ -23,7 +23,7 @@ const ideaTemplate = [
 //
 
 function App() {
-  const [ideas, dispatch] = useReducer(reducer, ideaTemplate)
+  const [ideas, dispatch] = useReducer(reducer, initialIdeas)
   const [modalVisibility, setModalVisibility] = useState(false)
 
   //
@@ -42,7 +42,10 @@ function App() {
   return (
     <IdeasContext.Provider value={globalIdeas}>
       <CreateIdea />
-      <Ideas visibility={modalVisibility} setVisibility={setModalVisibility} />
+      <Ideas
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
+      />
     </IdeasContext.Provider>
   )
 }

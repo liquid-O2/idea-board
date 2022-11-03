@@ -7,22 +7,22 @@ import Form from '../components/form'
 //
 
 function CreateIdea() {
-  const [createVisibility, setCreateVisibility] = useState(false)
+  const [isFormVisible, setIsFormVisible] = useState(false)
   return (
     <div className='container flex center-vr mt-2 flex-vertical'>
       <h1>IdeaBoard</h1>
       <div className='createWrapper flex flex-vertical center-vr mt-2'>
-        {createVisibility ? (
+        {isFormVisible ? (
           <Form
-            setCreateVisibility={setCreateVisibility}
-            update={false}
+            setIsFormVisible={setIsFormVisible}
+            isUpdateForm={false}
             selectedItem={null}
           />
         ) : (
           <button
             className='placeholder-btn'
             onClick={() => {
-              setCreateVisibility(!createVisibility)
+              setIsFormVisible(!isFormVisible)
             }}>
             Capture and save your ideas
           </button>

@@ -8,19 +8,19 @@ import { IdeasContext } from '../src/App'
 
 //
 
-function Ideas({ visibility, setVisibility }) {
+function Ideas({ modalVisibility, setModalVisibility }) {
   const ideaContext = useContext(IdeasContext)
   const [selectedItem, setSelectedItem] = useState({ title: '', text: '', id: '' })
 
   return (
     <>
       <EditIdea
-        editIsOpen={visibility}
-        setVisibility={setVisibility}
+        isEditOpen={modalVisibility}
+        setModalVisibility={setModalVisibility}
         selectedItem={selectedItem}
       />
 
-      <SortIdeas hidden={ideaContext.ideas.length > 2} />
+      <SortIdeas isVisible={ideaContext.ideas.length > 2} />
 
       <div className='container flex ideasWrapper mt-2'>
         {ideaContext.ideas.map((idea) => {
@@ -45,7 +45,7 @@ function Ideas({ visibility, setVisibility }) {
                     </button>
                     <button
                       onClick={() => {
-                        setVisibility(!visibility)
+                        setModalVisibility(!modalVisibility)
                         setSelectedItem({
                           title: idea.title,
                           text: idea.text,

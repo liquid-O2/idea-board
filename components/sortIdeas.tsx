@@ -4,9 +4,9 @@ import { useContext } from 'react'
 
 import { IdeasContext } from '../src/App'
 
-function SortIdeas({ hidden }) {
+function SortIdeas({ isVisible }) {
   const ideaContext = useContext(IdeasContext)
-  if (!hidden) return
+  if (!isVisible) return
 
   return (
     <div className='container flex sort-wrapper'>

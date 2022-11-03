@@ -7,14 +7,39 @@ import { IdeasContext } from '../src/App'
 
 //
 
-function Form({ setCreateVisibility, update, selectedItem }) {
+function Form({ setIsFormVisible, isUpdateForm, selectedItem }) {
   const ideaContext = useContext(IdeasContext)
   const [charactersleft, setCharactersLeft] = useState(140)
   const createTitle = useRef(null)
   const createText = useRef(null)
 
   //
-  // if (createTitle) createTitle.current.focus()
+
+  const handleSubmit = () => {
+    if (isUpdateForm) {
+      ideaContext.dispatch({
+        type: 'update',
+        updatedTitle: createTitle.current.value,
+        updatedText: createText.current.value,
+        id: selectedItem.id,
+      })
+      setIsFormVisible((preVis) => !preVis)
+    } else {
+      ideaContext.dispatch({
+        type: 'submit',
+        title: createTitle.current.value,
+        text: createText.current.value,
+        id: uuid(),
+      })
+      setIsFormVisible((preVis) => !preVis)
+      createTitle.current.value = ''
+      createText.current.value = ''
+      setCharactersLeft(140)
+    }
+  }
+
+  //
+
   return (
     <div className='empty'>
       <input
@@ -23,7 +48,7 @@ function Form({ setCreateVisibility, update, selectedItem }) {
         type='text'
         className='createTitle'
         placeholder='Title'
-        defaultValue={update ? selectedItem.title : ''}
+        defaultValue={isUpdateForm ? selectedItem.title : ''}
         autoComplete='false'
         ref={createTitle}
         required
@@ -34,7 +59,7 @@ function Form({ setCreateVisibility, update, selectedItem }) {
         className='createText'
         placeholder='Enter the description of your idea'
         autoComplete='false'
-        defaultValue={update ? selectedItem.text : ''}
+        defaultValue={isUpdateForm ? selectedItem.text : ''}
         ref={createText}
         onChange={(e) => {
           if (e.target.value === '') {
@@ -50,7 +75,7 @@ function Form({ setCreateVisibility, update, selectedItem }) {
       <div className='button-wrapper mt-1'>
         <button
           className='cancelBtn'
-          onClick={() => setCreateVisibility((preVis) => !preVis)}>
+          onClick={() => setIsFormVisible((preVis) => !preVis)}>
           Cancel
         </button>
 
@@ -58,26 +83,7 @@ function Form({ setCreateVisibility, update, selectedItem }) {
           type='submit'
           className='submitBtn'
           onClick={() => {
-            if (!update) {
-              ideaContext.dispatch({
-                type: 'submit',
-                title: createTitle.current.value,
-                text: createText.current.value,
-                id: uuid(),
-              })
-              setCreateVisibility((preVis) => !preVis)
-              createTitle.current.value = ''
-              createText.current.value = ''
-              setCharactersLeft(140)
-            } else {
-              ideaContext.dispatch({
-                type: 'update',
-                updatedTitle: createTitle.current.value,
-                updatedText: createText.current.value,
-                id: selectedItem.id,
-              })
-              setCreateVisibility((preVis) => !preVis)
-            }
+            handleSubmit()
           }}>
           Save Idea
         </button>
