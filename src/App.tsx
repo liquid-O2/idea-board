@@ -7,16 +7,18 @@ import CreateIdea from '../components/createIdea'
 import Ideas from '../components/ideas'
 import getDate from './utils/getDate'
 import reducer from './utils/reducer'
+import IdeasType from './types/IdeasType'
+import GlobalStateType from './types/GlobalStateType'
 
-export const IdeasContext = createContext(null)
+export const IdeasContext = createContext<GlobalStateType>(null)
 
-const initialIdeas = [
+const initialIdeas: IdeasType[] = [
   {
     id: null,
-    title: null,
-    text: null,
+    title: '',
+    text: '',
     updated: false,
-    time: null,
+    time: 0,
   },
 ]
 
@@ -28,7 +30,7 @@ function App() {
 
   //
 
-  const globalIdeas = useMemo(
+  const globalState: GlobalStateType = useMemo(
     () => ({
       dispatch,
       ideas,
@@ -40,7 +42,7 @@ function App() {
   //
 
   return (
-    <IdeasContext.Provider value={globalIdeas}>
+    <IdeasContext.Provider value={globalState}>
       <CreateIdea />
       <Ideas
         modalVisibility={modalVisibility}

@@ -1,4 +1,4 @@
-export default function getDate(date) {
+export default function getDate(date: number) {
   const currentDate = new Date(date)
   const day = currentDate.getDate()
   const month = currentDate.getMonth() + 1

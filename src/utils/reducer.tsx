@@ -1,6 +1,8 @@
 import sort from './sort'
+import IdeasType from '../types/IdeasType'
+import ActionType from '../types/ActionType'
 
-export default function reducer(ideas, action) {
+export default function reducer(ideas: IdeasType[], action: ActionType) {
   switch (action.type) {
     //
 
@@ -23,8 +25,8 @@ export default function reducer(ideas, action) {
         if (action.id === idea.id) {
           return {
             ...idea,
-            title: action.updatedTitle,
-            text: action.updatedText,
+            title: action.title,
+            text: action.text,
             updated: true,
             time: Date.now(),
           }

@@ -1,4 +1,11 @@
-const sortArray = (array, property) => {
+import IdeasType from '../types/IdeasType'
+
+interface PropertyType {
+  name: string;
+  isDefault: boolean;
+}
+
+const sortArray = (array: IdeasType[], property: PropertyType) => {
   return [...array].sort((a, b) => {
     if (a[property.name] < b[property.name]) {
       return property.name === 'time' && !property.isDefault ? 1 : -1
@@ -10,7 +17,7 @@ const sortArray = (array, property) => {
   })
 }
 
-export default function sort(type, array) {
+export default function sort(type: string, array: IdeasType[]) {
   if (type === 'alphabetical') {
     return sortArray(array, { name: 'title', isDefault: false })
   }

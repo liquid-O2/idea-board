@@ -5,12 +5,23 @@ import React, { useContext, useState } from 'react'
 import EditIdea from './editIdea'
 import SortIdeas from './sortIdeas'
 import { IdeasContext } from '../src/App'
+import SelectedItemType from '../src/types/SelectedItemType'
 
 //
 
-function Ideas({ modalVisibility, setModalVisibility }) {
+interface IdeasPropsType {
+  modalVisibility: boolean;
+  setModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Ideas(ideasProp: IdeasPropsType) {
+  const { modalVisibility, setModalVisibility } = ideasProp
   const ideaContext = useContext(IdeasContext)
-  const [selectedItem, setSelectedItem] = useState({ title: '', text: '', id: '' })
+  const [selectedItem, setSelectedItem] = useState<SelectedItemType>({
+    title: '',
+    text: '',
+    id: null,
+  })
 
   return (
     <>

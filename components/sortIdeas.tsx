@@ -4,7 +4,8 @@ import { useContext } from 'react'
 
 import { IdeasContext } from '../src/App'
 
-function SortIdeas({ isVisible }) {
+function SortIdeas(sortProps: { isVisible: boolean }) {
+  const { isVisible } = sortProps
   const ideaContext = useContext(IdeasContext)
   if (!isVisible) return
 

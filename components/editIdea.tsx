@@ -1,10 +1,17 @@
 //
 
 import Form from './form'
-
+import SelectedItemType from '../src/types/SelectedItemType'
 //
 
-function EditIdea({ isEditOpen, setModalVisibility, selectedItem }) {
+interface EditPropsType {
+  isEditOpen: boolean;
+  setModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedItem: SelectedItemType;
+}
+
+function EditIdea(editProps: EditPropsType) {
+  const { isEditOpen, setModalVisibility, selectedItem } = editProps
   if (!isEditOpen) return
   return (
     <div className='modalwrapper'>

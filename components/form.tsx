@@ -4,10 +4,17 @@ import React, { useState, useRef, useContext } from 'react'
 
 import { v4 as uuid } from 'uuid'
 import { IdeasContext } from '../src/App'
-
+import SelectedItemType from '../src/types/SelectedItemType'
 //
 
-function Form({ setIsFormVisible, isUpdateForm, selectedItem }) {
+interface FormPropType {
+  isUpdateForm: boolean;
+  setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedItem: SelectedItemType;
+}
+
+function Form(formProps: FormPropType) {
+  const { setIsFormVisible, isUpdateForm, selectedItem } = formProps
   const ideaContext = useContext(IdeasContext)
   const [charactersleft, setCharactersLeft] = useState(140)
   const createTitle = useRef(null)
@@ -19,8 +26,8 @@ function Form({ setIsFormVisible, isUpdateForm, selectedItem }) {
     if (isUpdateForm) {
       ideaContext.dispatch({
         type: 'update',
-        updatedTitle: createTitle.current.value,
-        updatedText: createText.current.value,
+        title: createTitle.current.value,
+        text: createText.current.value,
         id: selectedItem.id,
       })
       setIsFormVisible((preVis) => !preVis)
