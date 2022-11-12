@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 import EditIdea from './editIdea'
 import SortIdeas from './sortIdeas'
 import { IdeasContext } from '../src/App'
-import SelectedItemType from '../src/types/SelectedItemType'
+import { SelectedItemType } from '../src/types'
 
 //
 

@@ -1,6 +1,5 @@
 import sort from './sort'
-import IdeasType from '../types/IdeasType'
-import ActionType from '../types/ActionType'
+import { ActionType, IdeasType } from '../types'
 
 export default function reducer(ideas: IdeasType[], action: ActionType) {
   switch (action.type) {

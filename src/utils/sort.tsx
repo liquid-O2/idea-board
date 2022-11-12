@@ -1,17 +1,16 @@
-import IdeasType from '../types/IdeasType'
+import { IdeasType } from '../types'
 
-interface PropertyType {
-  name: string;
-  isDefault: boolean;
-}
-
-const sortArray = (array: IdeasType[], property: PropertyType) => {
+export const sortArray = (
+  array: IdeasType[],
+  property: string,
+  isDescending: boolean
+) => {
   return [...array].sort((a, b) => {
-    if (a[property.name] < b[property.name]) {
-      return property.name === 'time' && !property.isDefault ? 1 : -1
+    if (a[property] < b[property]) {
+      return isDescending ? 1 : -1
     }
-    if (a[property.name] > b[property.name]) {
-      return property.name === 'time' && !property.isDefault ? -1 : 1
+    if (a[property] > b[property]) {
+      return isDescending ? -1 : 1
     }
     return 0
   })
@@ -19,12 +18,12 @@ const sortArray = (array: IdeasType[], property: PropertyType) => {
 
 export default function sort(type: string, array: IdeasType[]) {
   if (type === 'alphabetical') {
-    return sortArray(array, { name: 'title', isDefault: false })
+    return sortArray(array, 'title', false)
   }
   if (type === 'mostRecent') {
-    return sortArray(array, { name: 'time', isDefault: false })
+    return sortArray(array, 'time', false)
   }
   if (type === 'default') {
-    return sortArray(array, { name: 'time', isDefault: true })
+    return sortArray(array, 'time', true)
   }
 }

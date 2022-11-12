@@ -1,7 +1,7 @@
 //
 
 import Form from './form'
-import SelectedItemType from '../src/types/SelectedItemType'
+import { SelectedItemType } from '../src/types'
 //
 
 interface EditPropsType {

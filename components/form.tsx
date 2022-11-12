@@ -4,7 +4,7 @@ import React, { useState, useRef, useContext } from 'react'
 
 import { v4 as uuid } from 'uuid'
 import { IdeasContext } from '../src/App'
-import SelectedItemType from '../src/types/SelectedItemType'
+import { SelectedItemType } from '../src/types'
 //
 
 interface FormPropType {

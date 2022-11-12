@@ -7,8 +7,7 @@ import CreateIdea from '../components/createIdea'
 import Ideas from '../components/ideas'
 import getDate from './utils/getDate'
 import reducer from './utils/reducer'
-import IdeasType from './types/IdeasType'
-import GlobalStateType from './types/GlobalStateType'
+import { GlobalStateType, IdeasType } from './types'
 
 export const IdeasContext = createContext<GlobalStateType>(null)
 
