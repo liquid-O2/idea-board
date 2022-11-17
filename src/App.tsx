@@ -11,7 +11,7 @@ import { GlobalStateType, IdeasType } from './types'
 
 export const IdeasContext = createContext<GlobalStateType>(null)
 
-let initialIdeas: IdeasType[] = [
+const initialIdeas: IdeasType[] = [
   {
     id: null,
     title: '',
@@ -30,10 +30,10 @@ function App() {
   // local storage
 
   useEffect(() => {
-    initialIdeas = JSON.parse(localStorage.getItem('ideas'))
-    if (initialIdeas) {
+    const storedIdeas: IdeasType[] = JSON.parse(localStorage.getItem('ideas'))
+    if (storedIdeas) {
       // eslint-disable-next-line array-callback-return
-      initialIdeas.map((localIdeas) => {
+      storedIdeas.map((localIdeas) => {
         if (localIdeas.title !== '' && localIdeas.text !== '') {
           return dispatch({
             type: 'setIdeas',
