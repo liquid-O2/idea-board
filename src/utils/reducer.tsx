@@ -44,7 +44,17 @@ export default function reducer(ideas: IdeasType[], action: ActionType) {
       return ideas.filter((idea) => idea.id !== action.id)
 
     //
-
+    case 'setIdeas':
+      return [
+        ...ideas,
+        {
+          title: action.title,
+          text: action.text,
+          id: action.id,
+          time: action.time,
+          updated: action.updated,
+        },
+      ]
     default:
       return ideas
   }

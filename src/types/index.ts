@@ -5,6 +5,8 @@ export interface ActionType {
   title?: string;
   sortType?: string;
   id?: string | null;
+  time?:number,
+  updated?:boolean
 }
 
 export interface IdeasType {

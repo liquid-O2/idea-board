@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useMemo } from 'react'
+import { createContext, useReducer, useState, useMemo, useEffect } from 'react'
 
 //
 
@@ -11,7 +11,7 @@ import { GlobalStateType, IdeasType } from './types'
 
 export const IdeasContext = createContext<GlobalStateType>(null)
 
-const initialIdeas: IdeasType[] = [
+let initialIdeas: IdeasType[] = [
   {
     id: null,
     title: '',
@@ -26,6 +26,34 @@ const initialIdeas: IdeasType[] = [
 function App() {
   const [ideas, dispatch] = useReducer(reducer, initialIdeas)
   const [modalVisibility, setModalVisibility] = useState(false)
+
+  // local storage
+
+  useEffect(() => {
+    initialIdeas = JSON.parse(localStorage.getItem('ideas'))
+    if (initialIdeas) {
+      // eslint-disable-next-line array-callback-return
+      initialIdeas.map((localIdeas) => {
+        if (localIdeas.title !== '' && localIdeas.text !== '') {
+          return dispatch({
+            type: 'setIdeas',
+            id: localIdeas.id,
+            title: localIdeas.title,
+            time: localIdeas.time,
+            text: localIdeas.text,
+            updated: localIdeas.updated,
+          })
+        }
+      })
+    }
+  }, [])
+
+  //
+
+  useEffect(() => {
+    const jsonIdeas = JSON.stringify(ideas)
+    localStorage.setItem('ideas', jsonIdeas)
+  }, [ideas])
 
   //
 
