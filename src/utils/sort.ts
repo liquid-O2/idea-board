@@ -21,9 +21,9 @@ export default function sort(type: string, array: IdeasType[]) {
     return sortArray(array, 'title', false)
   }
   if (type === 'mostRecent') {
-    return sortArray(array, 'time', false)
+    return sortArray(array, 'time', true)
   }
   if (type === 'default') {
-    return sortArray(array, 'time', true)
+    return sortArray(array, 'time', false)
   }
 }
