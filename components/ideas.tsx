@@ -11,7 +11,7 @@ import { SelectedItemType } from '../src/types'
 
 interface IdeasPropsType {
   modalVisibility: boolean;
-  setModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalVisibility?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Ideas(ideasProp: IdeasPropsType) {
@@ -37,38 +37,40 @@ function Ideas(ideasProp: IdeasPropsType) {
         {ideaContext.ideas.map((idea) => {
           if (!(idea.title && idea.text)) return
           return (
-            <React.Fragment key={idea.id}>
-              <div className='card flex flex-vertical'>
-                <p className='card-title'>{idea.title}</p>
-                <p className='card-text'>{idea.text}</p>
-                <p className='card-time'>
-                  {idea.updated
-                    ? `Updated on : ${ideaContext.getDate(idea.time)}`
-                    : `Created on : ${ideaContext.getDate(idea.time)}`}
-                </p>
-                <div className='action-wrapper flex'>
-                  <div className='buttons'>
-                    <button
-                      onClick={() => {
-                        ideaContext.dispatch({ type: 'delete', id: idea.id })
-                      }}>
-                      <img src='/DeleteButton.svg' alt='' />
-                    </button>
-                    <button
-                      onClick={() => {
-                        setModalVisibility(!modalVisibility)
-                        setSelectedItem({
-                          title: idea.title,
-                          text: idea.text,
-                          id: idea.id,
-                        })
-                      }}>
-                      <img src='/EditButton.svg' alt='' />
-                    </button>
-                  </div>
+            <div key={idea.id} className='card flex flex-vertical'>
+              <p data-testid='card-title' className='card-title'>
+                {idea.title}
+              </p>
+              <p data-testid='card-text' className='card-text'>
+                {idea.text}
+              </p>
+              <p className='card-time'>
+                {idea.updated
+                  ? `Updated on : ${ideaContext.getDate(idea.time)}`
+                  : `Created on : ${ideaContext.getDate(idea.time)}`}
+              </p>
+              <div className='action-wrapper flex'>
+                <div className='buttons'>
+                  <button
+                    onClick={() => {
+                      ideaContext.dispatch({ type: 'delete', id: idea.id })
+                    }}>
+                    <img src='/DeleteButton.svg' alt='' />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setModalVisibility(!modalVisibility)
+                      setSelectedItem({
+                        title: idea.title,
+                        text: idea.text,
+                        id: idea.id,
+                      })
+                    }}>
+                    <img src='/EditButton.svg' alt='' />
+                  </button>
                 </div>
               </div>
-            </React.Fragment>
+            </div>
           )
         })}
       </div>
