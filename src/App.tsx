@@ -52,8 +52,8 @@ function App() {
   //
 
   useEffect(() => {
-    const jsonIdeas = JSON.stringify(ideas)
-    localStorage.setItem('storedIdeas', jsonIdeas)
+    const localIdeas = JSON.stringify(ideas)
+    localStorage.setItem('storedIdeas', localIdeas)
   }, [ideas])
 
   //
