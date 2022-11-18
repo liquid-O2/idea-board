@@ -30,18 +30,19 @@ function App() {
   // local storage
 
   useEffect(() => {
-    const storedIdeas: IdeasType[] = JSON.parse(localStorage.getItem('ideas'))
+    const storedIdeas: IdeasType[] = JSON.parse(localStorage.getItem('storedIdeas'))
     if (storedIdeas) {
       // eslint-disable-next-line array-callback-return
       storedIdeas.map((localIdeas) => {
-        if (localIdeas.title !== '' && localIdeas.text !== '') {
+        const { title, text, time, updated, id } = localIdeas
+        if (title !== '' && text !== '') {
           return dispatch({
             type: 'setIdeas',
-            id: localIdeas.id,
-            title: localIdeas.title,
-            time: localIdeas.time,
-            text: localIdeas.text,
-            updated: localIdeas.updated,
+            id,
+            title,
+            time,
+            text,
+            updated,
           })
         }
       })
@@ -52,7 +53,7 @@ function App() {
 
   useEffect(() => {
     const jsonIdeas = JSON.stringify(ideas)
-    localStorage.setItem('ideas', jsonIdeas)
+    localStorage.setItem('storedIdeas', jsonIdeas)
   }, [ideas])
 
   //

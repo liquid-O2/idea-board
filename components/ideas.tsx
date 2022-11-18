@@ -35,25 +35,26 @@ function Ideas(ideasProp: IdeasPropsType) {
 
       <div className='container flex ideasWrapper mt-2'>
         {ideaContext.ideas.map((idea) => {
-          if (!(idea.title && idea.text)) return
+          const { title, text, updated, id, time } = idea
+          if (!(title && text)) return
           return (
-            <div key={idea.id} className='card flex flex-vertical'>
+            <div key={id} className='card flex flex-vertical'>
               <p data-testid='card-title' className='card-title'>
-                {idea.title}
+                {title}
               </p>
               <p data-testid='card-text' className='card-text'>
-                {idea.text}
+                {text}
               </p>
               <p className='card-time'>
-                {idea.updated
-                  ? `Updated on : ${ideaContext.getDate(idea.time)}`
-                  : `Created on : ${ideaContext.getDate(idea.time)}`}
+                {updated
+                  ? `Updated on : ${ideaContext.getDate(time)}`
+                  : `Created on : ${ideaContext.getDate(time)}`}
               </p>
               <div className='action-wrapper flex'>
                 <div className='buttons'>
                   <button
                     onClick={() => {
-                      ideaContext.dispatch({ type: 'delete', id: idea.id })
+                      ideaContext.dispatch({ type: 'delete', id })
                     }}>
                     <img src='/DeleteButton.svg' alt='' />
                   </button>
@@ -61,9 +62,9 @@ function Ideas(ideasProp: IdeasPropsType) {
                     onClick={() => {
                       setModalVisibility(!modalVisibility)
                       setSelectedItem({
-                        title: idea.title,
-                        text: idea.text,
-                        id: idea.id,
+                        title,
+                        text,
+                        id,
                       })
                     }}>
                     <img src='/EditButton.svg' alt='' />
