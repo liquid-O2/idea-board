@@ -28,7 +28,6 @@ function App() {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   // local storage
-
   useEffect(() => {
     const storedIdeas: IdeasType[] = JSON.parse(localStorage.getItem('storedIdeas'))
     if (storedIdeas) {
