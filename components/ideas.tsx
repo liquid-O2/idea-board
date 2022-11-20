@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { useContext, useState } from 'react'
 
 //
@@ -14,9 +15,8 @@ interface IdeasPropsType {
   setModalVisibility?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Ideas(ideasProp: IdeasPropsType) {
-  const { modalVisibility, setModalVisibility } = ideasProp
-  const ideaContext = useContext(IdeasContext)
+function Ideas({ modalVisibility, setModalVisibility }: IdeasPropsType) {
+  const { ideas, dispatch, getDate } = useContext(IdeasContext)
   const [selectedItem, setSelectedItem] = useState<SelectedItemType>({
     title: '',
     text: '',
@@ -31,10 +31,10 @@ function Ideas(ideasProp: IdeasPropsType) {
         selectedItem={selectedItem}
       />
 
-      <SortIdeas isVisible={ideaContext.ideas.length > 2} />
+      <SortIdeas isVisible={ideas.length > 2} />
 
       <div className='container flex ideasWrapper mt-2'>
-        {ideaContext.ideas.map((idea) => {
+        {ideas.map((idea) => {
           const { title, text, updated, id, time } = idea
           if (!(title && text)) return
           return (
@@ -47,16 +47,16 @@ function Ideas(ideasProp: IdeasPropsType) {
               </p>
               <p className='card-time'>
                 {updated
-                  ? `Updated on : ${ideaContext.getDate(time)}`
-                  : `Created on : ${ideaContext.getDate(time)}`}
+                  ? `Updated on : ${getDate(time)}`
+                  : `Created on : ${getDate(time)}`}
               </p>
               <div className='action-wrapper flex'>
                 <div className='buttons'>
                   <button
                     onClick={() => {
-                      ideaContext.dispatch({ type: 'delete', id })
+                      dispatch({ type: 'delete', id })
                     }}>
-                    <img src='/DeleteButton.svg' alt='' />
+                    <img src='/DeleteButton.svg' alt={`delete ${title}`} />
                   </button>
                   <button
                     onClick={() => {
@@ -67,7 +67,7 @@ function Ideas(ideasProp: IdeasPropsType) {
                         id,
                       })
                     }}>
-                    <img src='/EditButton.svg' alt='' />
+                    <img src='/EditButton.svg' alt='edit' />
                   </button>
                 </div>
               </div>
