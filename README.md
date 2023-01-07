@@ -18,7 +18,7 @@ To get started with Ideaboard, either visit the [Live website](https://ideaboard
 or simply clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/liquid-o2/ideaboard.git
+git clone https://github.com/liquid-O2/idea-board.git
 cd ideaboard
 npm install
 ```
