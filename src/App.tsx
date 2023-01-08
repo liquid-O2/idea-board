@@ -31,10 +31,9 @@ function App() {
   useEffect(() => {
     const storedIdeas: IdeasType[] = JSON.parse(localStorage.getItem('storedIdeas'))
     if (storedIdeas) {
-      // eslint-disable-next-line array-callback-return
-      storedIdeas.map((localIdeas) => {
+      storedIdeas.forEach((localIdeas) => {
         const { title, text, time, updated, id } = localIdeas
-        if (title !== '' && text !== '') {
+        if (title !== '' && text !== '')
           return dispatch({
             type: 'setIdeas',
             id,
@@ -43,7 +42,6 @@ function App() {
             text,
             updated,
           })
-        }
       })
     }
   }, [])
@@ -70,11 +68,13 @@ function App() {
 
   return (
     <IdeasContext.Provider value={globalState}>
-      <CreateIdea />
-      <Ideas
-        modalVisibility={modalVisibility}
-        setModalVisibility={setModalVisibility}
-      />
+      <div className='create-idea-wrapper'>
+        <CreateIdea />
+        <Ideas
+          modalVisibility={modalVisibility}
+          setModalVisibility={setModalVisibility}
+        />
+      </div>
     </IdeasContext.Provider>
   )
 }

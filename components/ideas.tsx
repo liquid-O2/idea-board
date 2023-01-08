@@ -31,49 +31,58 @@ function Ideas({ modalVisibility, setModalVisibility }: IdeasPropsType) {
         selectedItem={selectedItem}
       />
 
-      <SortIdeas isVisible={ideas.length > 2} />
-
-      <div className='container flex ideasWrapper mt-2'>
-        {ideas.map((idea) => {
-          const { title, text, updated, id, time } = idea
-          if (!(title && text)) return
-          return (
-            <div key={id} className='card flex flex-vertical'>
-              <p data-testid='card-title' className='card-title'>
-                {title}
-              </p>
-              <p data-testid='card-text' className='card-text'>
-                {text}
-              </p>
-              <p className='card-time'>
-                {updated
-                  ? `Updated on : ${getDate(time)}`
-                  : `Created on : ${getDate(time)}`}
-              </p>
-              <div className='action-wrapper flex'>
-                <div className='buttons'>
-                  <button
-                    onClick={() => {
-                      dispatch({ type: 'delete', id })
-                    }}>
-                    <img src='/DeleteButton.svg' alt={`delete ${title}`} />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setModalVisibility(!modalVisibility)
-                      setSelectedItem({
-                        title,
-                        text,
-                        id,
-                      })
-                    }}>
-                    <img src='/EditButton.svg' alt='edit' />
-                  </button>
+      <div className='container flex center-hr'>
+        <div className='sort-wrapper'>
+          <SortIdeas isVisible={ideas.length > 2} />
+        </div>
+      </div>
+      <div className='container flex center-hr'>
+        <div className='ideasWrapper mt-2'>
+          {ideas.map((idea) => {
+            const { title, text, updated, id, time } = idea
+            if (!(title && text)) return
+            return (
+              <div key={id} className='card flex flex-vertical'>
+                <p data-testid='card-title' className='card-title'>
+                  {title}
+                </p>
+                <p data-testid='card-text' className='card-text'>
+                  {text}
+                </p>
+                <p className='card-time'>
+                  {updated
+                    ? `Updated on : ${getDate(time)}`
+                    : `Created on : ${getDate(time)}`}
+                </p>
+                <div className='action-wrapper flex'>
+                  <div className='buttons'>
+                    <button
+                      onClick={() => {
+                        dispatch({ type: 'delete', id })
+                      }}>
+                      <img
+                        src='/DeleteButton.svg'
+                        alt={`delete ${title}`}
+                        className='icon'
+                      />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setModalVisibility(!modalVisibility)
+                        setSelectedItem({
+                          title,
+                          text,
+                          id,
+                        })
+                      }}>
+                      <img src='/EditButton.svg' alt='edit' className='icon' />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </>
   )

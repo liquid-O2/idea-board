@@ -38,12 +38,22 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  
 }
+
+*:focus{
+  outline:2px solid var(--white) ;
+  outline-offset: 2px;
+}
+
 html {
+  background-color: var(--background);
   font-size: 16px;
 }
 body {
-  background-color: var(--black);
+  
+  background:url('/background.png') no-repeat center center;
+  background-size: cover;
   color: var(--white);
   font-family: 'GeneralSans-Regular';
   display: flex;
@@ -58,7 +68,8 @@ h1 {
 }
 
 .container {
-  width: 95vw;
+  width: 100%;
+  padding: 0px 64px;
   max-width: 1440px;
 }
 
@@ -77,6 +88,10 @@ h1 {
   margin-top: 2rem;
 }
 
+.mt-3 {
+  margin-top: 3rem;
+}
+
 .mt-1 {
   margin-top: 1rem;
 }
@@ -87,19 +102,20 @@ h1 {
 
 .createWrapper {
   width: 100%;
+  max-width: 800px;
   background-color: var(--background);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
 }
 
 .createTitle,
 .placeholder {
   width: 100%;
-  font-family: 'GeneralSans-Semibold';
+  font-family: 'GeneralSans-Regular';
   background-color: #00000000;
   border: none;
   color: var(--white);
-  padding: 1rem 1.1rem;
-  font-size: 1.25rem;
+  padding: 1.2rem;
+  font-size: 1.125rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -108,13 +124,13 @@ h1 {
   background-color: #00000000;
   border: none;
   color: var(--white);
-  padding: 1rem 1.1rem;
-  font-size: 1.25rem;
+  padding: 1.2rem ;
+  font-size: 1.125rem;
 }
 
 .counter {
   align-self: flex-start;
-  padding-left: 1rem;
+  padding-left: 1.2rem;
   font-size: 0.9rem;
   color: #faf9eb80;
 }
@@ -124,18 +140,19 @@ h1 {
   width: 100%;
   justify-content: end;
   padding: 0rem 1rem 1rem 1rem;
+ 
 }
 
 button {
   border: none;
-  font-family: 'GeneralSans-Semibold';
-  height: 40px;
+  font-family: 'GeneralSans-Regular';
+  cursor: pointer;
   background-color: var(--background);
   border: 1px solid var(--white);
   border-radius: 0.5rem;
   color: var(--white);
   font-size: 1rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
 }
 .submitBtn {
   margin-left: 1rem;
@@ -148,10 +165,10 @@ button {
 .card {
   background: var(--background);
   overflow: hidden;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
   flex: 1 0 auto;
-  row-gap: 0.5rem;
+  row-gap: 0.75rem;
   word-wrap: break-word;
   max-width: 100%;
 }
@@ -162,28 +179,30 @@ button {
   padding-bottom: 0.7rem;
 }
 .card-text {
-  font-size: 1.2rem;
+  font-size: 1rem;
   word-wrap: break-word;
   line-height: 150%;
 }
 
 .card-time {
-  font-size: 1rem;
-  opacity: 70%;
+  font-size: 0.75rem;
+  opacity: 50%;
   margin-bottom: auto;
+  line-height: 1;
   margin-top: auto;
 }
 
 .action-wrapper {
-  margin-top: auto;
+  margin-top: 1rem;
   width: 100%;
 }
 
 .ideasWrapper {
-  gap: 12px;
-  flex-wrap: wrap;
-  overflow: hidden;
-  overflow-wrap: break-word;
+  gap: 1rem;
+  display: grid;
+  max-width: 800px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .modalBackground {
@@ -199,10 +218,11 @@ button {
   align-items: center;
 }
 .modal {
-  width: 95vw;
-  height: 200px;
+  max-width: 800px;
+
   border-radius: 0.8rem;
   background-color: #20201d;
+  padding-bottom: 1rem;
 }
 
 select {
@@ -210,15 +230,17 @@ select {
   border: none;
   background-color: var(--background);
   color: var(--white);
-  font-size: 1.125rem;
+  font-size: 1rem;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   border-right: 1rem solid #20201d00;
   margin-top: 1rem;
 }
 
 .sort-wrapper {
   justify-content: flex-end;
+  font-size: 1rem;
+  font-family: 'GeneralSans-Regular';
 }
 
 option {
@@ -240,9 +262,11 @@ option {
   width: 100%;
   text-align: left;
   border: none;
-  height: 3.25rem;
+  height: fit-content;
+  padding: 1.2rem;
   opacity: 0.8;
-  font-size: 1.125rem;
+  line-height: 1;
+  font-size: 1rem;
 }
 
 .buttons {
@@ -258,4 +282,24 @@ option {
   height: 28px;
   width: 28px;
   border: none;
+}
+
+
+.create-idea-wrapper{
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.cancelBtn{
+  border: 1px solid var(--border);
+  
+}
+.sort-wrapper{
+  width: 800px;
+  justify-self: end;
+  padding: 0;
 }

@@ -50,8 +50,6 @@ function Form(formProps: FormPropType) {
   return (
     <div className='empty'>
       <input
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
         type='text'
         className='createTitle'
         placeholder='Title'
