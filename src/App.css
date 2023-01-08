@@ -51,7 +51,6 @@ html {
   font-size: 16px;
 }
 body {
-  
   background:url('/background.png') no-repeat center center;
   background-size: cover;
   color: var(--white);
@@ -59,6 +58,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+
 }
 
 h1 {
@@ -68,11 +69,17 @@ h1 {
 }
 
 .container {
+  width: 100vw;
+  padding: 0px 24px;
+  max-width: 1440px;
+}
+@media (min-width: 768px){
+.container {
   width: 100%;
   padding: 0px 64px;
   max-width: 1440px;
 }
-
+}
 .flex {
   display: flex;
 }
@@ -102,10 +109,17 @@ h1 {
 
 .createWrapper {
   width: 100%;
-  max-width: 800px;
+  max-width: 95vw;
   background-color: var(--background);
   border-radius: 0.75rem;
 }
+
+@media (min-width: 768px){.createWrapper {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--background);
+  border-radius: 0.75rem;
+}}
 
 .createTitle,
 .placeholder {
@@ -202,8 +216,17 @@ button {
   display: grid;
   max-width: 800px;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
 }
+
+@media (min-width: 768px) {.ideasWrapper {
+  gap: 1rem;
+  display: grid;
+  max-width: 800px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  
+}}
 
 .modalBackground {
   background-color: #10100e99;
@@ -284,8 +307,18 @@ option {
   border: none;
 }
 
-
 .create-idea-wrapper{
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  padding: 4rem 0rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+@media (min-width: 768px){.create-idea-wrapper{
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -293,13 +326,19 @@ option {
   justify-content: center;
   align-items: center;
   
-}
+}}
+
 .cancelBtn{
   border: 1px solid var(--border);
   
 }
 .sort-wrapper{
-  width: 800px;
+  width: 100%;
   justify-self: end;
   padding: 0;
 }
+@media (min-width: 768px){.sort-wrapper{
+  width: 800px;
+  justify-self: end;
+  padding: 0;
+}}
