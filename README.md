@@ -1,4 +1,4 @@
-![Ideaboard, project image mockup](https://cdn.sanity.io/images/lo6epx6n/production/3c68d61b5ffe121bc0e5781229c3308a38f77486-6000x4500.jpg)
+![Ideaboard, project image mockup](https://cdn.sanity.io/images/lo6epx6n/production/087613d2577e07fd173582d3c25b940cf696a49f-6000x4500.jpg)
 
 # Ideaboard
 
